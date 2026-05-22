@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrimonio Ideal: Blog</title>
+    <meta name="description" content="Entradas del blog de Patrimonio Ideal - Noticias y actualizaciones del partido.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700;1,9..144,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        @tailwind base; @tailwind components; @tailwind utilities;
+        @layer base { html { scroll-behavior: smooth; } body { @apply bg-[#f7f2ec] text-[#1c0f2e] font-["Instrument_Sans"] antialiased overflow-x-hidden; } ::selection { @apply bg-[#e879b8] text-white; } }
+        @layer utilities {
+            .stripe-co { background: linear-gradient(to right, #ffd700 0%, #ffd700 40%, #003087 40%, #003087 62%, #ce1126 62%, #ce1126 100%); }
+            .grain::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
+            .ticker-inner { animation: ticker 32s linear infinite; will-change: transform; }
+            @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+            .stagger > * { opacity: 0; transform: translateY(20px); animation: fadeUp 0.5s ease forwards; }
+            .stagger > *:nth-child(1) { animation-delay: 0.05s; }
+            .stagger > *:nth-child(2) { animation-delay: 0.12s; }
+            .stagger > *:nth-child(3) { animation-delay: 0.19s; }
+            @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+            .card-tilt { transition: transform 0.3s cubic-bezier(.22,.68,0,1.2); }
+            .card-tilt:hover { transform: rotate(-1deg) translateY(-4px) scale(1.01); }
+            ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #f7f2ec; } ::-webkit-scrollbar-thumb { background: #c9a8e0; border-radius: 99px; }
+        }
+        @media (min-width: 1024px) { .animate-float { animation: float 6s ease-in-out infinite; } .animate-float-alt { animation: float 8s ease-in-out infinite reverse; } }
+        @keyframes float { '0%,100%': { transform: translateY(0px) rotate(-1deg) } '50%': { transform: translateY(-12px) rotate(1deg) } }
+    </style>
+</head>
+<body class="grain">
+    <div class="fixed top-0 left-0 right-0 h-1.5 stripe-co z-[60]"></div>
+    <header class="fixed top-1.5 left-0 right-0 z-50 transition-all duration-300 py-3">
+        <nav class="mx-auto max-w-7xl px-5 md:px-8 flex items-center justify-between rounded-2xl transition-all duration-300 bg-transparent">
+            <a href="index.html" class="flex-shrink-0 py-2"><div class="w-10 h-10 bg-[#7b4fa6] rounded-lg flex items-center justify-center"><span class="text-white font-bold text-lg font-['Fraunces']">PI</span></div></a>
+            <ul class="hidden lg:flex items-center gap-1 list-none m-0 p-0">
+                <li><a href="index.html" class="text-[0.78rem] font-semibold tracking-wide uppercase text-[#7b4fa6] transition-colors px-3 py-2 rounded-lg bg-[#7b4fa6]/8">Blog</a></li>
+            </ul>
+            <button class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] cursor-pointer bg-transparent border-none rounded-lg hover:bg-[#7b4fa6]/8 transition-colors" onclick="toggleMenu()">
+                <span class="block w-5 h-0.5 bg-[#1c0f2e] rounded transition-all duration-300" id="menu-line-1"></span>
+                <span class="block w-5 h-0.5 bg-[#1c0f2e] rounded transition-all duration-200" id="menu-line-2"></span>
+                <span class="block w-5 h-0.5 bg-[#1c0f2e] rounded transition-all duration-300" id="menu-line-3"></span>
+            </button>
+        </nav>
+    </header>
+    <div class="fixed inset-0 z-40 lg:hidden transition-all duration-300 opacity-0 pointer-events-none" id="mobile-menu">
+        <div class="absolute inset-0 bg-[#1c0f2e]/60 backdrop-blur-sm" onclick="toggleMenu()"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-72 bg-[#f7f2ec] flex flex-col pt-24 pb-10 px-8 shadow-2xl transition-transform duration-300 translate-x-full" id="mobile-menu-panel">
+            <ul class="list-none m-0 p-0 flex flex-col gap-1">
+                <li><a href="index.html" onclick="toggleMenu()" class="block font-['Fraunces'] font-bold text-2xl text-[#7b4fa6] py-3 border-b border-[#c9a8e0]/30">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+    <main>
+        <section class="relative min-h-[60vh] flex flex-col justify-center overflow-hidden bg-[#f7f2ec] pt-20">
+            <p aria-hidden class="absolute inset-0 flex items-center justify-center font-['Fraunces'] font-black text-[#7b4fa6]/[0.04] leading-none text-center pointer-events-none select-none px-4 break-words" style="font-size: clamp(5rem, 22vw, 18rem); word-break: break-all;">Blog</p>
+            <div class="absolute top-[10%] right-[8%] w-64 h-64 rounded-full bg-gradient-to-br from-[#f2a6d0]/40 to-[#e879b8]/20 blur-3xl animate-float pointer-events-none"></div>
+            <div class="absolute top-[40%] left-[5%] w-48 h-48 rounded-full bg-gradient-to-br from-[#c9a8e0]/30 to-[#f2a6d0]/20 blur-2xl animate-float-alt pointer-events-none"></div>
+            <div class="relative z-10 max-w-7xl mx-auto px-5 md:px-8 pb-0 w-full text-center">
+                <h1 class="font-['Fraunces'] font-black leading-[0.92] mb-6 stagger" style="font-size: clamp(3.5rem, 9vw, 7rem);">
+                    <span class="block text-[#1c0f2e]">Entradas del</span>
+                    <span class="block italic text-[#7b4fa6] relative inline-block">
+                        Blog
+                        <svg class="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 300 10" preserveAspectRatio="none" aria-hidden><path d="M0,5 Q37.5,0 75,5 T150,5 T225,5 T300,5" fill="none" stroke="#e879b8" stroke-width="2.5" stroke-linecap="round"></path></svg>
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-[#6b5379] leading-relaxed max-w-2xl mx-auto">Noticias, actualizaciones y reflexiones del partido Patrimonio Ideal.</p>
+            </div>
+            <div class="relative z-10 mt-16 bg-[#e879b8] overflow-hidden py-3.5">
+                <div class="ticker-inner inline-block whitespace-nowrap">
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Noticias</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Actualizaciones</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Reflexiones</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Patrimonio Ideal</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Noticias</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Actualizaciones</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Reflexiones</span>
+                    <span class="mx-8 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-white"><span class="text-[#f2a6d0]/60 mr-2">✦</span>Patrimonio Ideal</span>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 md:py-32 bg-[#f7f2ec]">
+            <div class="max-w-7xl mx-auto px-5 md:px-8">
+                <div class="space-y-12">
+                    <article class="card-tilt bg-[#ede6db] rounded-2xl p-8 border border-[#c9a8e0]/30">
+                        <div class="flex flex-col md:flex-row gap-8">
+                            <div class="flex-1">
+                                <span class="inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase text-[#7b4fa6] mb-4">19 de Mayo de 2026</span>
+                                <h2 class="font-['Fraunces'] text-3xl md:text-4xl font-bold text-[#1c0f2e] mb-4">Patrimonio Ideal da sus primeros pasos</h2>
+                                <p class="text-[#6b5379] leading-relaxed mb-6">Hoy lanzamos oficialmente nuestro sitio web y comenzamos la recolección de firmas para obtener Personería Jurídica. Este es el primer paso en nuestro camino para transformar Colombia desde las bases, con propuestas concretas y un compromiso inquebrantable con la equidad y el progreso compartido.</p>
+                                <a href="entry1.html" class="inline-flex items-center gap-2 bg-[#7b4fa6] text-white font-semibold text-sm uppercase tracking-wide px-6 py-3 rounded-xl hover:bg-[#e879b8] transition-colors">Leer más <span aria-hidden>→</span></a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card-tilt bg-[#ede6db] rounded-2xl p-8 border border-[#c9a8e0]/30">
+                        <div class="flex flex-col md:flex-row gap-8">
+                            <div class="flex-1">
+                                <span class="inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase text-[#7b4fa6] mb-4">19 de Mayo de 2026</span>
+                                <h2 class="font-['Fraunces'] text-3xl md:text-4xl font-bold text-[#1c0f2e] mb-4">Patrimonio Ideal da sus primeros pasos</h2>
+                                <p class="text-[#6b5379] leading-relaxed mb-6">Hoy lanzamos oficialmente nuestro sitio web y comenzamos la recolección de firmas para obtener Personería Jurídica. Este es el primer paso en nuestro camino para transformar Colombia desde las bases, con propuestas concretas y un compromiso inquebrantable con la equidad y el progreso compartido.</p>
+                                <a href="entry2.html" class="inline-flex items-center gap-2 bg-[#7b4fa6] text-white font-semibold text-sm uppercase tracking-wide px-6 py-3 rounded-xl hover:bg-[#e879b8] transition-colors">Leer más <span aria-hidden>→</span></a>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="text-center py-12">
+                        <p class="text-[#6b5379] mb-4">Más entradas del blog llegarán pronto...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[#1c0f2e] text-white py-12">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="w-10 h-10 bg-[#7b4fa6] rounded-lg flex items-center justify-center mb-4"><span class="text-white font-bold text-lg font-['Fraunces']">PI</span></div>
+                    <p class="text-white/70 text-sm">Partido Patrimonio Ideal</p>
+                    <p class="text-white/50 text-xs">El progreso verdadero no deja a nadie atrás.</p>
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="index.html" class="hover:text-[#e879b8] transition-colors">Blog</a>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-8 pt-8 text-center text-xs text-white/40"><p>© 2026 Patrimonio Ideal. Todos los derechos reservados.</p></div>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu'); const panel = document.getElementById('mobile-menu-panel');
+            const line1 = document.getElementById('menu-line-1'); const line2 = document.getElementById('menu-line-2'); const line3 = document.getElementById('menu-line-3');
+            if (menu.classList.contains('opacity-0')) {
+                menu.classList.remove('opacity-0', 'pointer-events-none'); panel.classList.remove('translate-x-full');
+                line1.classList.add('translate-y-[7px]', 'rotate-45'); line2.classList.add('opacity-0', 'scale-x-0'); line3.classList.add('-translate-y-[7px]', '-rotate-45');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.add('opacity-0', 'pointer-events-none'); panel.classList.add('translate-x-full');
+                line1.classList.remove('translate-y-[7px]', 'rotate-45'); line2.classList.remove('opacity-0', 'scale-x-0'); line3.classList.remove('-translate-y-[7px]', '-rotate-45');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+</body>
+</html>
